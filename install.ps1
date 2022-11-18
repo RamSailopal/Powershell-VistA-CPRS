@@ -6,7 +6,7 @@
 #   To specify a port, run e.g. .\install.ps1 -ip 192.168.240.21 -p 5001
 #
 #
-param ([String] $ip="127.0.0.1", [String] $port="9001")
+param ([String] $ip="127.0.0.1", [String] $port="9430")
 Set-Location '~\My Documents'
 if (Get-ChildItem "C:\Program Files (x86)" | Where-Object { $_.Name -like "VistA" }) { 
     Write-Host -ForegroundColor Red "VistA installation directory already exists at C:\Program Files (x86)\VistA. Please remove manually before continuing"
