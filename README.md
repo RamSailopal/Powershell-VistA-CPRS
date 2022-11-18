@@ -40,7 +40,7 @@ Once cloned, type "Powershell" on the search bar (bottom right of desktop) Selec
     
     .\VistA-docker.ps1
     
-## Additional paramters
+## Additional parameters
 
 To remove/recreate a VistA EHR container run the command with **-restart Y** e.g.
 
