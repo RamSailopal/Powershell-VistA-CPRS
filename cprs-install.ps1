@@ -1,5 +1,5 @@
 #
-#   Powershell script to install VistA CPRS client on Windows Machine
+#   Powershell script to install CPRS client on Windows Machine
 #
 #   Run with .\install.ps1 - This sets up a connection with default IP address 127.0.0.1 and default port 9430
 #
