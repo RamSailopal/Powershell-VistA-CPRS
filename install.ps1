@@ -1,12 +1,12 @@
 #
 #   Powershell script to install VistA CPRS client on Windows Machine
 #
-#   Run with .\install.ps1 - This sets up a connection with default IP address 127.0.0.1 and default port 9001
+#   Run with .\install.ps1 - This sets up a connection with default IP address 127.0.0.1 and default port 9430
 #
 #   To specify a port, run e.g. .\install.ps1 -ip 192.168.240.21 -p 5001
 #
 #
-param ([String] $ip="127.0.0.1", [String] $port="9001")
+param ([String] $ip="127.0.0.1", [String] $port="9430")
 $ans1="D"
 Set-Location '~\My Documents'
 if (Get-ChildItem "C:\Program Files (x86)" | Where-Object { $_.Name -like "VistA" }) { 
@@ -44,4 +44,4 @@ $shortcut = $WscriptObj.CreateShortcut($ShortcutPath)
 $shortcut.TargetPath = $SourceFilePath
 $shortcut.Arguments = "S=$ip P=$port CCOW=disable showrpcs"
 $shortcut.Save()
-Write-Host -ForegroundColor Green "CPRS client shortcut now installed on Desktop. Use VistA-docker.ps1 to Docker requirements if needed"
+Write-Host -ForegroundColor Green "CPRS client shortcut now installed on Desktop. Use VistA-docker.ps1 for Docker requirements if needed"
