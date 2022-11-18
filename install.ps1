@@ -1,7 +1,7 @@
 #
 #   Powershell script to install VistA CPRS client on Windows Machine
 #
-#   Run with .\install.ps1 - This sets up a connection with default IP address 127.0.0.1 and default port 9001
+#   Run with .\install.ps1 - This sets up a connection with default IP address 127.0.0.1 and default port 9430
 #
 #   To specify a port, run e.g. .\install.ps1 -ip 192.168.240.21 -p 5001
 #
@@ -28,11 +28,12 @@ Write-Host "Downloading and Extracting CPRS installation file"
 Set-Location '~\My Documents'
 Invoke-WebRequest -URI https://altushost-swe.dl.sourceforge.net/project/worldvista-ehr/WorldVistA_EHR_3.0/CPRS-Files-WVEHR3.0Ver2-16_BasedOn1.0.30.16.zip -OutFile CPRS.zip
 Expand-Archive '~\My Documents\CPRS.zip' -DestinationPath 'C:\Program Files (x86)' -Force
-$SourceFilePath = "C:\Program Files (x86)\VistA\CPRS\CPRS-WVEHR3.0Ver2-16_BasedOn1.0.30.16 S=$ip P=$port CCOW=disable showrpcs"
+$SourceFilePath = 'C:\Program Files (x86)\VistA\CPRS\CPRS-WVEHR3.0Ver2-16_BasedOn1.0.30.16.exe'
 Get-Item '~/Desktop' | ForEach-Object { $ShortcutPath = $_.FullName }
 $ShortcutPath = "$ShortcutPath\CPRS.lnk"
 Write-Host "$ShortcutPath"
 $WScriptObj = New-Object -ComObject ("WScript.Shell")
 $shortcut = $WscriptObj.CreateShortcut($ShortcutPath)
 $shortcut.TargetPath = $SourceFilePath
+$shortcut.Arguments = "S=$ip P=$port CCOW=disable showrpcs"
 $shortcut.Save()
