@@ -13,7 +13,7 @@ if ($action.ToUpper() -eq "RESTART") {
                 } 
                 docker rm -f $contid | Out-Null
                 docker run -d -p 2222:22 -p 8001:8001 -p 8080:8080 -p 9430:9430 -p 9080:9080 --name=wv worldvista/worldvista-ehr | Out-Null
-                Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the install.ps1 script to install the client CPRS software if needed"
+                Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the cprs-install.ps1 script to install the client CPRS software if needed"
                 exit
             }
         }
@@ -21,7 +21,7 @@ if ($action.ToUpper() -eq "RESTART") {
             $ans3 = Read-Host -Prompt "There was an error recreating the VistA EHR container. Do you wish to create one now? (Y/N)"
             if ($ans3.ToUpper() -eq "Y") {
                 docker run -d -p 2222:22 -p 8001:8001 -p 8080:8080 -p 9430:9430 -p 9080:9080 --name=wv worldvista/worldvista-ehr | Out-Null
-                Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the install.ps1 script to install the client CPRS software if needed"
+                Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the cprs-install.ps1 script to install the client CPRS software if needed"
                 exit
             }
         }
@@ -67,7 +67,7 @@ elseif ($action.ToUpper() -eq "START") {
         }
         if ($contid -eq "") {
             docker run -d -p 2222:22 -p 8001:8001 -p 8080:8080 -p 9430:9430 -p 9080:9080 --name=wv worldvista/worldvista-ehr | Out-Null
-            Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the install.ps1 script to install the client CPRS software if needed"
+            Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the cprs-install.ps1 script to install the client CPRS software if needed"
             exit
         }
         else {
@@ -118,12 +118,12 @@ try {
                 }
                 docker rm -f $contid | Out-Null
                 docker run -d -p 2222:22 -p 8001:8001 -p 8080:8080 -p 9430:9430 -p 9080:9080 --name=wv worldvista/worldvista-ehr | Out-Null
-                Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the install.ps1 script to install the client CPRS software if needed"
+                Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the cprs-install.ps1 script to install the client CPRS software if needed"
                 exit
             }
         }
         docker run -d -p 2222:22 -p 8001:8001 -p 8080:8080 -p 9430:9430 -p 9080:9080 --name=wv worldvista/worldvista-ehr | Out-Null
-        Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the install.ps1 script to install the client CPRS software if needed"
+        Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the cprs-install.ps1 script to install the client CPRS software if needed"
         exit
     }
 }
@@ -144,7 +144,7 @@ catch {
             & '~\Docker Desktop.lnk'
             Write-Host -ForegroundColor green "Running VistA EHR in Docker"
             docker run -d -p 2222:22 -p 8001:8001 -p 8080:8080 -p 9430:9430 -p 9080:9080 --name=wv worldvista/worldvista-ehr | Out-Null
-            Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the install.ps1 script to install the client CPRS software if needed"
+            Write-Host -ForegroundColor green "VistA EHR is now running in Docker. Use the cprs-install.ps1 script to install the client CPRS software if needed"
         }
         catch {
             Write-Host -ForegroundColor red "Issue running Docker Desktop Install"
