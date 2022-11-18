@@ -16,7 +16,7 @@ Once cloned, type "Powershell" on the search bar (bottom right of desktop) Selec
     
 # Additional paramters
 
-When running the command as above, the IP address **127.0.0.1** will be used along with the port of **9001**
+When running the command as above, the IP address **127.0.0.1** will be used along with the port of **9430**
 
 To run with specific a specific IP address and port, run with:
 
