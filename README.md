@@ -1,5 +1,7 @@
 # Powershell-VistA-CPRS
 
+![Alt text](CPRS.JPG?raw=true "view")
+
 Powershell script to download, extract, install and configure VistA CPRS client application as well as downloading Docker Desktop for Windows and pulling/running the VistA EHR image
 
 # Client CPRS install
