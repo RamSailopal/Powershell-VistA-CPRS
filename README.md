@@ -40,6 +40,8 @@ Once cloned, type "Powershell" on the search bar (bottom right of desktop) Selec
     
     .\VistA-docker.ps1
     
+With no parameters/flags added, the script will attempt to install the neccesary dependancies and run the VistA EHR container
+    
 ## Additional parameters
 
 The **action** flag will allow the docker container to be created, destroyed. recreated, as well as attaining the status
@@ -57,4 +59,5 @@ Accepted values:
 **install** - Install the neccesary dependancies and run the VistA EHR container (default option)
 
 e.g.
+
     .\VistA-docker.ps1 -action restart
