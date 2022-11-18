@@ -1,20 +1,25 @@
 #
 #   Powershell script to install VistA CPRS client on Windows Machine
 #
-#   Run with .\install.ps1 - This sets up a connection with default IP address 127.0.0.1 and default port 9430
+#   Run with .\install.ps1 - This sets up a connection with default IP address 127.0.0.1 and default port 9001
 #
 #   To specify a port, run e.g. .\install.ps1 -ip 192.168.240.21 -p 5001
 #
 #
-param ([String] $ip="127.0.0.1", [String] $port="9430")
+param ([String] $ip="127.0.0.1", [String] $port="9001")
+$ans1="D"
 Set-Location '~\My Documents'
 if (Get-ChildItem "C:\Program Files (x86)" | Where-Object { $_.Name -like "VistA" }) { 
-    Write-Host -ForegroundColor Red "VistA installation directory already exists at C:\Program Files (x86)\VistA. Please remove manually before continuing"
-    exit 
+    $ans=Read-Host -Prompt "VistA installation directory already exists. Would you like to delete it? (Y/N)"
+    if ($ans.ToUpper() -eq "Y") {
+        Remove-Item -Recurse -Path "C:\Program Files (x86)\VistA"
+    }
 }
 if (Get-ChildItem "~/Desktop" | Where-Object { $_.Name -like "CPRS.lnk" }) { 
-    Write-Host -ForegroundColor Red "CPRS shortcut is already created on your desktop. Please remove manually before continuing"
-    exit 
+    $ans1 = Read-Host -Prompt "CPRS shortcut is already created on your desktop. Select Amend(A) or Delete(D)"
+    if ($ans1.ToUpper() -eq "D") {
+        Remove-Item -Path "~\Desktop\CPRS.lnk"
+    }
 }
 if ($ip -notmatch "^([0-9]{1,3}\.){3}([0-9]{1,3})$") {
     Write-Host -ForegroundColor Red "IP address is in the wrong format"
@@ -24,10 +29,12 @@ if ([int]$port -le 1024) {
     Write-Host -ForegroundColor Red "Port entered is in a reserved range"
     exit 
 }
-Write-Host "Downloading and Extracting CPRS installation file"
-Set-Location '~\My Documents'
-Invoke-WebRequest -URI https://altushost-swe.dl.sourceforge.net/project/worldvista-ehr/WorldVistA_EHR_3.0/CPRS-Files-WVEHR3.0Ver2-16_BasedOn1.0.30.16.zip -OutFile CPRS.zip
-Expand-Archive '~\My Documents\CPRS.zip' -DestinationPath 'C:\Program Files (x86)' -Force
+if ($ans1.ToUpper() -eq "D") {
+    Write-Host "Downloading and Extracting CPRS installation file"
+    Set-Location '~\My Documents'
+    Invoke-WebRequest -URI https://altushost-swe.dl.sourceforge.net/project/worldvista-ehr/WorldVistA_EHR_3.0/CPRS-Files-WVEHR3.0Ver2-16_BasedOn1.0.30.16.zip -OutFile CPRS.zip
+    Expand-Archive '~\My Documents\CPRS.zip' -DestinationPath 'C:\Program Files (x86)' -Force
+}
 $SourceFilePath = 'C:\Program Files (x86)\VistA\CPRS\CPRS-WVEHR3.0Ver2-16_BasedOn1.0.30.16.exe'
 Get-Item '~/Desktop' | ForEach-Object { $ShortcutPath = $_.FullName }
 $ShortcutPath = "$ShortcutPath\CPRS.lnk"
@@ -37,3 +44,4 @@ $shortcut = $WscriptObj.CreateShortcut($ShortcutPath)
 $shortcut.TargetPath = $SourceFilePath
 $shortcut.Arguments = "S=$ip P=$port CCOW=disable showrpcs"
 $shortcut.Save()
+Write-Host -ForegroundColor Green "CPRS client shortcut now installed on Desktop. Use VistA-docker.ps1 to Docker requirements if needed"
