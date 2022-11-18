@@ -52,7 +52,7 @@ Once cloned, type "Powershell" on the Windows search bar (bottom right of deskto
 
     Set-Location <location of cloned directory>
     
-    .\install.ps1
+    .\cprs-install.ps1
     
 ## Additional paramters
 
@@ -60,7 +60,7 @@ When running the command as above, the IP address **127.0.0.1** will be used alo
 
 To run with specific a specific IP address and port, run with:
 
-    .\install.ps1 -ip 192.168.240.21 -port 5987
+    .\cprs-install.ps1 -ip 192.168.240.21 -port 5987
 
 
 # References
