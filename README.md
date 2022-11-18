@@ -42,6 +42,19 @@ Once cloned, type "Powershell" on the search bar (bottom right of desktop) Selec
     
 ## Additional parameters
 
-To remove/recreate a VistA EHR container run the command with **-restart Y** e.g.
+The **action** flag will allow the docker container to be created, destroyed. recreated, as well as attaining the status
 
-    .\VistA-docker.ps1 -restart Y
+Accepted values:
+
+**start** - Create the container
+
+**stop** - Destroy the container
+
+**restart** - Recreate the container
+
+**status** - Attain the status of the container
+
+**install** - Install the neccesary dependancies and run the VistA EHR container (default option)
+
+e.g.
+    .\VistA-docker.ps1 -action restart
