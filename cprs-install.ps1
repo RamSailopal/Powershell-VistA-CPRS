@@ -45,3 +45,7 @@ $shortcut.TargetPath = $SourceFilePath
 $shortcut.Arguments = "S=$ip P=$port CCOW=disable showrpcs"
 $shortcut.Save()
 Write-Host -ForegroundColor Green "CPRS client shortcut now installed on Desktop. Use VistA-docker.ps1 for Docker requirements if needed"
+$resp = Read-Host -Prompt "The CRPS client is now installed, would you like to run it now? (Y/N)"
+if ($resp.ToUpper() = "Y") {
+    ~\Desktop\CPRS.lnk
+}  
