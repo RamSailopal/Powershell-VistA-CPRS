@@ -1,7 +1,37 @@
 #
 #   Check to see if Docker is installed. If not, download and install Docker Desktop for Windows. Then pull and run VistA EHR image in container
 #
-param ([String] $action="install")
+param ([String] $action="install", [switch]$help = $false )
+If ($help) {
+    Write-Host ""
+    Write-Host "This script runs a World VistA EHR server in a Docker Container after first installing the Docker Desktop dependancy if required"
+    Write-Host "https://github.com/RamSailopal/Powershell-VistA-CPRS"
+    Write-Host ""
+    Write-Host "Additional flags:"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-help" 
+    Write-Host -ForegroundColor "green" "Print help"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-action install" 
+    Write-Host -ForegroundColor "green" "Install the World VistA EHR container plus dependancies if necessary (default)"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-action noint-install"
+    Write-Host -ForegroundColor "green" "Install the World VistA EHR container plus dependancies if necessary in none interactive mode"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-action status"
+    Write-Host -ForegroundColor "green" "Print the status of the World VistA EHR container"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-action start"
+    Write-Host -ForegroundColor "green" "Start the World VistA EHR container"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-action stop"
+    Write-Host -ForegroundColor "green" "Stop the World VistA EHR container"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-action restart"
+    Write-Host -ForegroundColor "green" "Restart the World VistA EHR container"
+    Write-Host ""
+    exit
+}
 if ($action.ToUpper() -eq "RESTART") {
     try {
         $contid=""
