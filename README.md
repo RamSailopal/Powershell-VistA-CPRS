@@ -36,6 +36,8 @@ Accepted values:
 
 **install** - Install the neccesary dependancies and run the VistA EHR container (default option)
 
+**noint-install** - None interactive install
+
 e.g.
 
     .\VistA-docker.ps1 -action restart
