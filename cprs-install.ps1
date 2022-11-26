@@ -6,7 +6,25 @@
 #   To specify a port, run e.g. .\install.ps1 -ip 192.168.240.21 -p 5001
 #
 #
-param ([String] $ip="127.0.0.1", [String] $port="9430")
+param ([String] $ip="127.0.0.1", [String] $port="9430", [switch]$help = $false )
+If ($help) {
+    Write-Host ""
+    Write-Host "This script runs an installer for the WorldVistA CPRS client"
+    Write-Host "https://github.com/RamSailopal/Powershell-VistA-CPRS"
+    Write-Host ""
+    Write-Host "Additional flags:"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-help" 
+    Write-Host -ForegroundColor "green" "Print help"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-ip 127.0.0.1" 
+    Write-Host -ForegroundColor "green" "The ip address of the server running WorldVistA EHR, (default 127.0.0.1)"
+    Write-Host ""
+    Write-Host -ForegroundColor "yellow" "-port 9430"
+    Write-Host -ForegroundColor "green" "The port of the server running WorldVistA EHR, (default 9430)"
+    Write-Host ""
+    exit
+}
 $ans1="D"
 Set-Location '~\My Documents'
 if (Get-ChildItem "C:\Program Files (x86)" | Where-Object { $_.Name -like "VistA" }) { 
